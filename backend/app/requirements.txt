@@ -2,3 +2,5 @@ requests==2.25.1
 jinja2==2.11.3
 apscheduler==3.7.0
 pytest==6.2.2
+pytest-mock==3.5.1
+pytest-responsemock==1.0.1
