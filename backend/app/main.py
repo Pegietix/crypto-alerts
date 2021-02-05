@@ -1,8 +1,8 @@
-from settings import BTC_PRICE_THRESHOLD
-from settings import FEE_THRESHOLD
-from settings import RECIPIENTS
-from utils import EmailSender
-from utils import GlassnodeDataFetcher
+from backend.app.email_sender import EmailSender
+from backend.app.fetcher import GlassnodeDataFetcher
+from backend.app.settings import BTC_PRICE_THRESHOLD
+from backend.app.settings import FEE_THRESHOLD
+from backend.app.settings import RECIPIENTS
 
 
 def cronjob():
