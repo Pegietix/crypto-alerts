@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pitu Alerts</title>
+</head>
+<body>
+    <h2 style="color: #2e6c80; text-align: center;">
+        BTC or ETH transaction fees are high lately!
+    </h2>
+    <hr />
+    <h4 style="text-align: center;">
+        BTC Fees today
+        <a href="https://studio.glassnode.com/metrics?a=BTC&c=usd&category=Miners&m=fees.VolumeMean&s=1596809789&u=1612538189&zoom=182">
+            <sup>[1]</sup>
+        </a>:
+        <span style="background-color: #2b2301; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">
+            {{ btc_fee }} USD
+        </span>
+    </h4>
+    <h4 style="text-align: center;">
+        ETH Fees today
+        <a href="https://studio.glassnode.com/metrics?a=ETH&c=usd&category=Miners&m=fees.VolumeMean&s=1596809789&u=1612538189&zoom=182">
+            <sup>[2]</sup>
+        </a>:
+        <span style="background-color: #2b2301; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">
+            {{ eth_fee }} USD
+        </span>
+    </h4>
+    <hr />
+    <p style="text-align: center;">
+        BTC Price today:
+        <span style="background-color: #2b2301; color: #fff; display: inline-block; padding: 3px 10px; font-weight: bold; border-radius: 5px;">
+            {{ btc_price }} USD
+        </span>
+    </p>
+
+</body>
+</html>
