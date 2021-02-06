@@ -4,7 +4,7 @@ import pytest
 from requests.models import Response
 
 from backend.app.alerts.fetcher import GlassnodeDataFetcher
-from backend.app.secrets import API_KEYS
+from backend.app.constants import GLASSNODE_API_KEY
 
 
 class TestFetcher:
@@ -34,7 +34,7 @@ class TestFetcher:
         query_glassnode.assert_called_once_with(
             endpoint=fetcher.FEES_ENDPOINT,
             payload={
-                'api_key': API_KEYS['glassnode'],
+                'api_key': GLASSNODE_API_KEY,
                 'i': '24h',
                 'a': 'BTC',
                 'c': 'USD',
@@ -61,7 +61,7 @@ class TestFetcher:
         query_glassnode.assert_called_once_with(
             endpoint=fetcher.FEES_ENDPOINT,
             payload={
-                'api_key': API_KEYS['glassnode'],
+                'api_key': GLASSNODE_API_KEY,
                 'i': '24h',
                 'a': 'ETH',
                 'c': 'USD',

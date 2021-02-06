@@ -3,10 +3,10 @@ import json
 import requests
 from requests import Response
 
-from backend.app.secrets import API_KEYS
+from backend.app.constants import GLASSNODE_API_KEY
 
 BASE_PAYLOAD = {
-    'api_key': API_KEYS['glassnode'],
+    'api_key': GLASSNODE_API_KEY,
     'i': '24h',
 }
 

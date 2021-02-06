@@ -2,7 +2,7 @@ import requests
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
-from backend.app.secrets import API_KEYS
+from backend.app.constants import MAILGUN_API_KEY
 
 
 class EmailSender:
@@ -19,7 +19,7 @@ class EmailSender:
     def send_email_alert(self, template: str, subject: str, addressee: str, data: dict) -> None:
         requests.post(
             self.MAILGUN_ENDPOINT,
-            auth=('api', API_KEYS['mailgun']),
+            auth=('api', MAILGUN_API_KEY),
             data={
                 'from': f'Pitu Alerts <mailgun@{self.MAILGUN_DOMAIN}>',
                 'to': [addressee],
