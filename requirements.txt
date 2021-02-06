@@ -7,3 +7,4 @@ apscheduler==3.7.0
 pytest==6.2.2
 pytest-mock==3.5.1
 pytest-responsemock==1.0.1
+pytest-randomly==3.5.0
