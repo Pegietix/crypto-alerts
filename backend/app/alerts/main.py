@@ -5,7 +5,7 @@ from backend.app.alerts.settings import FEE_THRESHOLD
 from backend.app.alerts.settings import RECIPIENTS
 
 
-def cronjob():
+def run():
     fetched_data = GlassnodeDataFetcher().get_fetched_data()
     sender = EmailSender(RECIPIENTS)
 
@@ -21,3 +21,8 @@ def cronjob():
 
     else:
         print('Script successfully terminated without dispatching alerts')
+
+
+# Helps with debugging. Run this file to execute script manually.
+if __name__ == '__main__':
+    run()
