@@ -3,11 +3,11 @@ from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
 from backend.app.alerts.constants import MAILGUN_API_KEY
+from backend.app.alerts.constants import MAILGUN_DOMAIN
+from backend.app.alerts.constants import MAILGUN_ENDPOINT
 
 
 class EmailSender:
-    MAILGUN_DOMAIN = 'sandbox77e3f720000b476989a9e4ee4f0a041f.mailgun.org'
-    MAILGUN_ENDPOINT = f'https://api.mailgun.net/v3/{MAILGUN_DOMAIN}/messages'
 
     def __init__(self, recipients: tuple):
         self.recipients = recipients
@@ -18,10 +18,10 @@ class EmailSender:
 
     def send_email_alert(self, template: str, subject: str, addressee: str, data: dict) -> None:
         requests.post(
-            self.MAILGUN_ENDPOINT,
+            MAILGUN_ENDPOINT,
             auth=('api', MAILGUN_API_KEY),
             data={
-                'from': f'Pitu Alerts <mailgun@{self.MAILGUN_DOMAIN}>',
+                'from': f'Pitu Alerts <mailgun@{MAILGUN_DOMAIN}>',
                 'to': [addressee],
                 'subject': subject,
                 'html': self._render_email_template(template, **data)
@@ -29,7 +29,7 @@ class EmailSender:
         )
 
     @staticmethod
-    def _render_email_template(template: str, **kwargs):
+    def _render_email_template(template: str, **kwargs) -> Environment:
         return Environment(
             loader=FileSystemLoader('templates')
         ).get_template(template).render(**kwargs)
