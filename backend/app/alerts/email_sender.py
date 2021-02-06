@@ -2,7 +2,7 @@ import requests
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
-from backend.app.constants import MAILGUN_API_KEY
+from backend.app.alerts.constants import MAILGUN_API_KEY
 
 
 class EmailSender:

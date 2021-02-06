@@ -4,8 +4,8 @@ import pytest
 from pytest import mark
 from requests.models import Response
 
+from backend.app.alerts.constants import GLASSNODE_API_KEY
 from backend.app.alerts.fetcher import GlassnodeDataFetcher
-from backend.app.constants import GLASSNODE_API_KEY
 
 
 class TestFetcher:

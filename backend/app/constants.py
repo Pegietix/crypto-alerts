@@ -1,4 +1,0 @@
-import os
-
-MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
-GLASSNODE_API_KEY = os.getenv('GLASSNODE_API_KEY')

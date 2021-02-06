@@ -3,7 +3,7 @@ import json
 import requests
 from requests import Response
 
-from backend.app.constants import GLASSNODE_API_KEY
+from backend.app.alerts.constants import GLASSNODE_API_KEY
 
 BASE_PAYLOAD = {
     'api_key': GLASSNODE_API_KEY,
