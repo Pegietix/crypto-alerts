@@ -19,7 +19,7 @@ class TestEmailSender:
 
     @fixture()
     def sender(self):
-        """Init new fetcher before each test."""
+        """Init new sender before each test."""
         return EmailSender(RECIPIENTS)
 
     def test_dispatch_alerts(self, mocker, sender):
@@ -29,20 +29,20 @@ class TestEmailSender:
         example_subject = 'Example subject'
         sender.dispatch_alerts(example_template_name, example_subject, EXAMPLE_FETCHED_DATA)
 
+        rendered_html = sender._render_email_template(example_template_name, **EXAMPLE_FETCHED_DATA)
         data_template = (
             {
                 'from': EMAIL_FROM,
                 'to': [addressee],
                 'subject': example_subject,
-                'html': sender._render_email_template(example_template_name, **EXAMPLE_FETCHED_DATA)
+                'html': rendered_html,
             } for addressee in RECIPIENTS
         )
-        api_call.assert_has_calls(
-            [
-                call(
-                    MAILGUN_ENDPOINT,
-                    auth=('api', MAILGUN_API_KEY),
-                    data=data_
-                ) for data_ in data_template
-            ]
-        )
+        expected_calls = [
+            call(
+                MAILGUN_ENDPOINT,
+                auth=('api', MAILGUN_API_KEY),
+                data=data_
+            ) for data_ in data_template
+        ]
+        api_call.assert_has_calls(expected_calls)
