@@ -1,16 +1,19 @@
 import os
+from unittest.mock import MagicMock
 
-import pytest
+from pytest import fixture
 from pytest import mark
 from requests.models import Response
 
+from backend.app.alerts.constants import FEES_ENDPOINT
 from backend.app.alerts.constants import GLASSNODE_API_KEY
+from backend.app.alerts.constants import PRICE_ENDPOINT
 from backend.app.alerts.fetcher import GlassnodeDataFetcher
 
 
 class TestFetcher:
 
-    @pytest.fixture()
+    @fixture()
     def fetcher(self):
         """Init new fetcher before each test."""
         return GlassnodeDataFetcher()
@@ -23,13 +26,57 @@ class TestFetcher:
         ]
     )
     def test_get_today_fees(
-            self,
-            mocker,
-            fetcher,
-            currency: str,
-            response_content_filename: str,
-            expected_return: float
+        self,
+        mocker,
+        fetcher,
+        currency: str,
+        response_content_filename: str,
+        expected_return: float
     ):
+        api_response_mock = self._mock_response(response_content_filename)
+        query_glassnode = self._mock_query(mocker, api_response_mock)
+
+        assert fetcher.get_today_fees(currency) == expected_return
+        query_glassnode.assert_called_once_with(
+            endpoint=FEES_ENDPOINT,
+            payload={
+                'api_key': GLASSNODE_API_KEY,
+                'i': '24h',
+                'a': currency,
+                'c': 'USD',
+            }
+        )
+
+    @mark.parametrize(
+        'currency, response_content_filename, expected_return',
+        [
+            ('BTC', 'glassnode_btc_prices_response.json', 39784),
+            ('ETH', 'glassnode_eth_prices_response.json', 1676)
+        ]
+    )
+    def test_get_today_price(
+        self,
+        mocker,
+        fetcher,
+        currency: str,
+        response_content_filename: str,
+        expected_return: int
+    ):
+        api_response_mock = self._mock_response(response_content_filename)
+        query_glassnode = self._mock_query(mocker, api_response_mock)
+
+        assert fetcher.get_today_price(currency) == expected_return
+        query_glassnode.assert_called_once_with(
+            endpoint=PRICE_ENDPOINT,
+            payload={
+                'api_key': GLASSNODE_API_KEY,
+                'i': '24h',
+                'a': currency,
+            }
+        )
+
+    @staticmethod
+    def _mock_response(response_content_filename: str) -> Response:
         api_response_mock = Response()
         api_response_mock._content = open(
             os.path.join(
@@ -40,20 +87,11 @@ class TestFetcher:
             ),
             'rb'
         ).read()
-        query_glassnode = mocker.patch(
+        return api_response_mock
+
+    @staticmethod
+    def _mock_query(mocker, api_response_mock: Response) -> MagicMock:
+        return mocker.patch(
             'backend.app.alerts.fetcher.GlassnodeDataFetcher._query_glassnode',
             return_value=api_response_mock
         )
-
-        assert fetcher.get_today_fees(currency) == expected_return
-        query_glassnode.assert_called_once_with(
-            endpoint=fetcher.FEES_ENDPOINT,
-            payload={
-                'api_key': GLASSNODE_API_KEY,
-                'i': '24h',
-                'a': currency,
-                'c': 'USD',
-            }
-        )
-
-    # TODO: Price tests.

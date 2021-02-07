@@ -1,8 +1,8 @@
 from backend.app.alerts.constants import BTC_PRICE_THRESHOLD
 from backend.app.alerts.constants import FEE_THRESHOLD
 from backend.app.alerts.constants import RECIPIENTS
-from backend.app.alerts.email_sender import EmailSender
 from backend.app.alerts.fetcher import GlassnodeDataFetcher
+from backend.app.alerts.mailing import EmailSender
 
 
 def run():

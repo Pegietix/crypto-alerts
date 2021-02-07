@@ -3,9 +3,9 @@ import json
 import requests
 from requests import Response
 
-from backend.app.alerts.constants import BTC_PRICE_ENDPOINT
 from backend.app.alerts.constants import FEES_ENDPOINT
 from backend.app.alerts.constants import GLASSNODE_API_KEY
+from backend.app.alerts.constants import PRICE_ENDPOINT
 
 BASE_PAYLOAD = {
     'api_key': GLASSNODE_API_KEY,
@@ -24,7 +24,7 @@ class GlassnodeDataFetcher:
 
     def get_today_price(self, currency: str) -> int:
         response = self._query_glassnode(
-            endpoint=BTC_PRICE_ENDPOINT,
+            endpoint=PRICE_ENDPOINT,
             payload={**BASE_PAYLOAD, 'a': currency}
         )
         return int(self._get_last_value(response))
