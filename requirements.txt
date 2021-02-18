@@ -1,6 +1,8 @@
 # TODO: This file is in root for Heroku to discover project as Python app.
 # TODO: MOve this file to /backend/ after dockerization.
 
+gunicorn==20.0.4   # For Heroku.
+
 requests==2.25.1
 django==3.1.6
 djangorestframework==3.12.2
