@@ -19,7 +19,7 @@ class TestEmailSender:
 
     @fixture()
     def sender(self):
-        """Init new sender before each test."""
+        """Init new _sender before each test."""
         return EmailSender(RECIPIENTS)
 
     def test_dispatch_alerts(self, mocker, sender):

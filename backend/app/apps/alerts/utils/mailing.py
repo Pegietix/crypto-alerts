@@ -15,7 +15,8 @@ class EmailSender:
         for addressee in self.recipients:
             self.send_email_alert(template, subject, addressee, data)
 
-    def send_email_alert(self, template: str, subject: str, addressee: str, data: dict) -> None:
+    @staticmethod
+    def send_email_alert(template: str, subject: str, addressee: str, data: dict) -> None:
         context = {
             'from': EMAIL_FROM,
             'to': [addressee],

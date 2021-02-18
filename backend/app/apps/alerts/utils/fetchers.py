@@ -6,6 +6,7 @@ from requests import Response
 from backend.app.apps.alerts.constants import FEES_ENDPOINT
 from backend.app.apps.alerts.constants import GLASSNODE_API_KEY
 from backend.app.apps.alerts.constants import PRICE_ENDPOINT
+from pycoingecko import CoinGeckoAPI
 
 BASE_PAYLOAD = {
     'api_key': GLASSNODE_API_KEY,
@@ -44,3 +45,10 @@ class GlassnodeDataFetcher:
     @staticmethod
     def _get_last_value(response: Response) -> str:
         return json.loads(response.text)[-1].get('v')
+
+
+class CoingeckoFetcher:
+    client = CoinGeckoAPI()
+
+    def get_current_btc_price(self) -> None:
+        return self.client.get_price(ids='bitcoin', vs_currencies='usd')
