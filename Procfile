@@ -1,1 +1,1 @@
-clock: python3 cronjob.py
+clock: python3 backend/app/manage.py runserver
