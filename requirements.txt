@@ -2,6 +2,7 @@
 # TODO: MOve this file to /backend/ after dockerization.
 
 gunicorn==20.0.4   # For Heroku.
+django-on-heroku==1.1.2
 
 requests==2.25.1
 django==3.1.6
