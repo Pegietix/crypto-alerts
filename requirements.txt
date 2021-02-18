@@ -11,6 +11,7 @@ singleton-decorator==1.0.0
 pycoingecko==1.4.0
 
 pytest==6.2.2
+pytest-django==4.1.0
 pytest-mock==3.5.1
 pytest-responsemock==1.0.1
 pytest-randomly==3.5.0  # Pytest suite will run in random order.

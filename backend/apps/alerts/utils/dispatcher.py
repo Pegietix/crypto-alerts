@@ -1,9 +1,9 @@
-from backend.app.apps.alerts.constants import BTC_PRICE_THRESHOLD
-from backend.app.apps.alerts.constants import FEE_THRESHOLD
-from backend.app.apps.alerts.constants import RECIPIENTS
-from backend.app.apps.alerts.utils.fetchers import CoingeckoFetcher
-from backend.app.apps.alerts.utils.fetchers import GlassnodeDataFetcher
-from backend.app.apps.alerts.utils.mailing import EmailSender
+from backend.apps.alerts.constants import BTC_PRICE_THRESHOLD
+from backend.apps.alerts.constants import FEE_THRESHOLD
+from backend.apps.alerts.constants import RECIPIENTS
+from backend.apps.alerts.utils.fetchers import CoingeckoFetcher
+from backend.apps.alerts.utils.fetchers import GlassnodeDataFetcher
+from backend.apps.alerts.utils.mailing import EmailSender
 
 
 class AlertDispatcher:

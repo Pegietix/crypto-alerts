@@ -4,6 +4,7 @@ import requests
 from backend.tests.constants import HTTP_REQUEST_METHODS
 
 
+
 @pytest.fixture(autouse=True)
 def disable_network_calls(monkeypatch):
     """Make sure that no real requests are made during tests."""

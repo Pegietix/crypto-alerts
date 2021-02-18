@@ -5,9 +5,9 @@ from apscheduler.schedulers import SchedulerNotRunningError
 from apscheduler.schedulers.background import BackgroundScheduler
 from singleton_decorator import singleton
 
-from backend.app.apps.alerts.constants import GLASSNODE_ALERTS_INTERVAL
-from backend.app.apps.alerts.constants import REALTIME_ALERTS_INTERVAL
-from backend.app.apps.alerts.utils.dispatcher import AlertDispatcher
+from backend.apps.alerts.constants import GLASSNODE_ALERTS_INTERVAL
+from backend.apps.alerts.constants import REALTIME_ALERTS_INTERVAL
+from backend.apps.alerts import AlertDispatcher
 
 
 @singleton

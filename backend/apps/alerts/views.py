@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from backend.app.apps.alerts.scheduler import Scheduler
+from backend.apps.alerts import Scheduler
 
 
 class StartDispatchAlertsJobsView(APIView):

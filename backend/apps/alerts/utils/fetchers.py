@@ -3,9 +3,9 @@ import json
 import requests
 from requests import Response
 
-from backend.app.apps.alerts.constants import FEES_ENDPOINT
-from backend.app.apps.alerts.constants import GLASSNODE_API_KEY
-from backend.app.apps.alerts.constants import PRICE_ENDPOINT
+from backend.apps.alerts.constants import FEES_ENDPOINT
+from backend.apps.alerts.constants import GLASSNODE_API_KEY
+from backend.apps.alerts.constants import PRICE_ENDPOINT
 from pycoingecko import CoinGeckoAPI
 
 BASE_PAYLOAD = {

@@ -2,11 +2,11 @@ from unittest.mock import call
 
 from pytest import fixture
 
-from backend.app.alerts.constants import EMAIL_FROM
-from backend.app.alerts.constants import MAILGUN_API_KEY
-from backend.app.alerts.constants import MAILGUN_ENDPOINT
-from backend.app.alerts.constants import RECIPIENTS
-from backend.app.alerts.mailing import EmailSender
+from backend.apps.alerts.constants import EMAIL_FROM
+from backend.apps.alerts.constants import MAILGUN_API_KEY
+from backend.apps.alerts.constants import MAILGUN_ENDPOINT
+from backend.apps.alerts.constants import RECIPIENTS
+from backend.apps.alerts.utils.mailing import EmailSender
 
 EXAMPLE_FETCHED_DATA = {
     'btc_fee': 17.0,

@@ -1,9 +1,9 @@
 import requests
 from django.template.loader import render_to_string
 
-from backend.app.apps.alerts.constants import EMAIL_FROM
-from backend.app.apps.alerts.constants import MAILGUN_API_KEY
-from backend.app.apps.alerts.constants import MAILGUN_ENDPOINT
+from backend.apps.alerts.constants import EMAIL_FROM
+from backend.apps.alerts.constants import MAILGUN_API_KEY
+from backend.apps.alerts.constants import MAILGUN_ENDPOINT
 
 
 class EmailSender:
@@ -15,12 +15,15 @@ class EmailSender:
         for addressee in self.recipients:
             self.send_email_alert(template, subject, addressee, data)
 
-    @staticmethod
-    def send_email_alert(template: str, subject: str, addressee: str, data: dict) -> None:
+    def send_email_alert(self, template: str, subject: str, addressee: str, data: dict) -> None:
         context = {
             'from': EMAIL_FROM,
             'to': [addressee],
             'subject': subject,
-            'html': render_to_string(template, context=data)
+            'html': self._render_email_template(template, **data)
         }
         requests.post(MAILGUN_ENDPOINT,  auth=('api', MAILGUN_API_KEY), data=context)
+
+    @staticmethod
+    def _render_email_template(template, **kwargs):
+        return render_to_string(template, context=kwargs)

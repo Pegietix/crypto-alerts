@@ -5,10 +5,10 @@ from pytest import fixture
 from pytest import mark
 from requests.models import Response
 
-from backend.app.alerts.constants import FEES_ENDPOINT
-from backend.app.alerts.constants import GLASSNODE_API_KEY
-from backend.app.alerts.constants import PRICE_ENDPOINT
-from backend.app.alerts.fetcher import GlassnodeDataFetcher
+from backend.apps.alerts.constants import FEES_ENDPOINT
+from backend.apps.alerts.constants import GLASSNODE_API_KEY
+from backend.apps.alerts.constants import PRICE_ENDPOINT
+from backend.apps.alerts.utils.fetchers import GlassnodeDataFetcher
 
 
 class TestFetcher:
@@ -33,6 +33,7 @@ class TestFetcher:
         response_content_filename: str,
         expected_return: float
     ):
+        print('iiiii', os.getcwd())
         api_response_mock = self._mock_response(response_content_filename)
         query_glassnode = self._mock_query(mocker, api_response_mock)
 
@@ -92,6 +93,6 @@ class TestFetcher:
     @staticmethod
     def _mock_query(mocker, api_response_mock: Response) -> MagicMock:
         return mocker.patch(
-            'backend.app.alerts.fetcher.GlassnodeDataFetcher._query_glassnode',
+            'backend.apps.alerts.utils.fetchers.GlassnodeDataFetcher._query_glassnode',
             return_value=api_response_mock
         )
