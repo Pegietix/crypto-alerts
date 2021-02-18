@@ -4,10 +4,10 @@ import requests
 from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
-from backend.app.alerts.constants import EMAIL_FROM
-from backend.app.alerts.constants import MAILGUN_API_KEY
-from backend.app.alerts.constants import MAILGUN_ENDPOINT
-from backend.app.constants import APP_DIR
+from backend.app.apps.alerts.constants import APP_DIR
+from backend.app.apps.alerts.constants import EMAIL_FROM
+from backend.app.apps.alerts.constants import MAILGUN_API_KEY
+from backend.app.apps.alerts.constants import MAILGUN_ENDPOINT
 
 
 class EmailSender:
@@ -34,5 +34,5 @@ class EmailSender:
     @staticmethod
     def _render_email_template(template: str, **kwargs) -> Environment:
         return Environment(
-            loader=FileSystemLoader(os.path.join(APP_DIR, 'alerts', 'templates'))
+            loader=FileSystemLoader(os.path.join(APP_DIR, 'templates'))
         ).get_template(template).render(**kwargs)

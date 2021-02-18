@@ -3,8 +3,10 @@
 
 requests==2.25.1
 django==3.1.6
+djangorestframework==3.12.2
 jinja2==2.11.3
 apscheduler==3.7.0
+singleton-decorator==1.0.0
 
 pytest==6.2.2
 pytest-mock==3.5.1

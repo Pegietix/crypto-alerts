@@ -1,6 +1,8 @@
 import os
 
 
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+
 MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
 GLASSNODE_API_KEY = os.getenv('GLASSNODE_API_KEY')
 

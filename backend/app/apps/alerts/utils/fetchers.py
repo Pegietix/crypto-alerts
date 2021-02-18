@@ -3,9 +3,9 @@ import json
 import requests
 from requests import Response
 
-from backend.app.alerts.constants import FEES_ENDPOINT
-from backend.app.alerts.constants import GLASSNODE_API_KEY
-from backend.app.alerts.constants import PRICE_ENDPOINT
+from backend.app.apps.alerts.constants import FEES_ENDPOINT
+from backend.app.apps.alerts.constants import GLASSNODE_API_KEY
+from backend.app.apps.alerts.constants import PRICE_ENDPOINT
 
 BASE_PAYLOAD = {
     'api_key': GLASSNODE_API_KEY,
@@ -38,6 +38,7 @@ class GlassnodeDataFetcher:
 
     @staticmethod
     def _query_glassnode(endpoint: str, payload: dict) -> Response:
+        # TODO: Status 401 means GLASSNODE_API_KEY is not in env vars. ASSERT in the beginning that env vars are set!
         return requests.get(endpoint, params=payload)
 
     @staticmethod

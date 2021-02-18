@@ -1,11 +1,11 @@
-from backend.app.alerts.constants import BTC_PRICE_THRESHOLD
-from backend.app.alerts.constants import FEE_THRESHOLD
-from backend.app.alerts.constants import RECIPIENTS
-from backend.app.alerts.fetcher import GlassnodeDataFetcher
-from backend.app.alerts.mailing import EmailSender
+from backend.app.apps.alerts.constants import BTC_PRICE_THRESHOLD
+from backend.app.apps.alerts.constants import FEE_THRESHOLD
+from backend.app.apps.alerts.constants import RECIPIENTS
+from backend.app.apps.alerts.utils.fetchers import GlassnodeDataFetcher
+from backend.app.apps.alerts.utils.mailing import EmailSender
 
 
-def run():
+def dispatch_alerts():
     fetched_data = GlassnodeDataFetcher().get_fetched_data()
     sender = EmailSender(RECIPIENTS)
 
@@ -21,8 +21,3 @@ def run():
 
     else:
         print('Script successfully terminated without dispatching alerts')
-
-
-# Helps with debugging. Run this file to execute script manually.
-if __name__ == '__main__':
-    run()
