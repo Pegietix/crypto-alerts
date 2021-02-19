@@ -1,6 +1,6 @@
 import requests
 
-from backend.django_settings.settings import MAIN_DOMAIN
+from backend.django_settings.settings.base import MAIN_DOMAIN
 
 
 def ping_project() -> None:
