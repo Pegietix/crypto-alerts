@@ -27,7 +27,6 @@ class TestFetcher:
     def test_get_today_fees(
         self, mocker, fetcher, currency: str, response_content_filename: str, expected_return: float
     ):
-        print('iiiii', os.getcwd())
         api_response_mock = self._mock_response(response_content_filename)
         query_glassnode = self._mock_query(mocker, api_response_mock)
 
