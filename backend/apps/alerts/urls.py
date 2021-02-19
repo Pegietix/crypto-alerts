@@ -1,7 +1,7 @@
 from django.urls import path
 
-from backend.apps.alerts import StartDispatchAlertsJobsView
-from backend.apps.alerts import StopDispatchAlertsJobsView
+from backend.apps.alerts.views import StartDispatchAlertsJobsView
+from backend.apps.alerts.views import StopDispatchAlertsJobsView
 
 urlpatterns = [
     path('dispatch/start/', StartDispatchAlertsJobsView.as_view()),
