@@ -21,3 +21,5 @@ def disable_network_calls(monkeypatch):
 
     for method in HTTP_REQUEST_METHODS:
         monkeypatch.setattr(requests, method, lambda *args, **kwargs: raise_error())
+
+    assert 1 == 0

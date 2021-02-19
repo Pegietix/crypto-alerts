@@ -1,1 +1,1 @@
-web: pytest && python backend/manage.py runserver 0.0.0.0:$PORT --noreload
+web: pytest -v && python backend/manage.py runserver 0.0.0.0:$PORT --noreload
