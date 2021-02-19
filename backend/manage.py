@@ -3,8 +3,6 @@
 import os
 import sys
 
-import pytest
-
 
 def main():
     """Run administrative tasks."""
@@ -17,11 +15,6 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-
-    # Run unit tests before launch.
-    if 'runserver' in sys.argv:
-        os.system('pytest -v backend/')
-
     execute_from_command_line(sys.argv)
 
 
