@@ -25,6 +25,8 @@ SECRET_KEY = '01w&iuyci^hxa)l8aw4@@j*8bgzbub05#-&6xksqr(c+ktpfq9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+MAIN_DOMAIN = 'https://pitu-alerts.herokuapp.com'
+
 ALLOWED_HOSTS = ['pitu-alerts.herokuapp.com']
 
 
