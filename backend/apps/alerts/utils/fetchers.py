@@ -45,5 +45,5 @@ class GlassnodeDataFetcher:
 class CoingeckoFetcher:
     client = CoinGeckoAPI()
 
-    def get_current_btc_price(self) -> None:
+    def get_current_btc_price(self) -> dict:
         return self.client.get_price(ids='bitcoin', vs_currencies='usd')
