@@ -34,7 +34,6 @@ class GlassnodeDataFetcher:
 
     @staticmethod
     def _query_glassnode(endpoint: str, payload: dict) -> Response:
-        # TODO: Status 401 means GLASSNODE_API_KEY is not in env vars. ASSERT in the beginning that env vars are set!
         return requests.get(endpoint, params=payload)
 
     @staticmethod
