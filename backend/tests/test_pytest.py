@@ -7,7 +7,6 @@ from backend.tests.constants import HTTP_REQUEST_METHODS
 
 
 class TestRequests:
-
     def test_real_requests_are_blocked_during_testing(self):
         for method in HTTP_REQUEST_METHODS:
             with pytest.raises(RuntimeError):

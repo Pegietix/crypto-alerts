@@ -19,5 +19,7 @@ class AlertDispatcher:
     def dispatch_price_alerts(self) -> None:
         current_price = CoingeckoFetcher().get_current_btc_price()['bitcoin']['usd']
         if current_price > BTC_PRICE_THRESHOLD:
-            self._sender.dispatch_alerts('price_alert_simple.html', 'BTC Realtime Price Alert', {'btc_price': current_price})
+            self._sender.dispatch_alerts(
+                'price_alert_simple.html', 'BTC Realtime Price Alert', {'btc_price': current_price}
+            )
             print('Price alerts successfully sent')

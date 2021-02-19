@@ -16,7 +16,6 @@ EXAMPLE_FETCHED_DATA = {
 
 
 class TestEmailSender:
-
     @fixture()
     def sender(self):
         """Init new _sender before each test."""
@@ -36,13 +35,10 @@ class TestEmailSender:
                 'to': [addressee],
                 'subject': example_subject,
                 'html': rendered_html,
-            } for addressee in RECIPIENTS
+            }
+            for addressee in RECIPIENTS
         )
         expected_calls = [
-            call(
-                MAILGUN_ENDPOINT,
-                auth=('api', MAILGUN_API_KEY),
-                data=data_
-            ) for data_ in data_template
+            call(MAILGUN_ENDPOINT, auth=('api', MAILGUN_API_KEY), data=data_) for data_ in data_template
         ]
         api_call.assert_has_calls(expected_calls)

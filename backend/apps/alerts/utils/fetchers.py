@@ -15,7 +15,6 @@ BASE_PAYLOAD = {
 
 
 class GlassnodeDataFetcher:
-
     def get_fetched_data(self) -> dict:
         return {
             'btc_fee': self.get_today_fees('BTC'),
@@ -24,16 +23,12 @@ class GlassnodeDataFetcher:
         }
 
     def get_today_price(self, currency: str) -> int:
-        response = self._query_glassnode(
-            endpoint=PRICE_ENDPOINT,
-            payload={**BASE_PAYLOAD, 'a': currency}
-        )
+        response = self._query_glassnode(endpoint=PRICE_ENDPOINT, payload={**BASE_PAYLOAD, 'a': currency})
         return int(self._get_last_value(response))
 
     def get_today_fees(self, currency: str) -> float:
         response = self._query_glassnode(
-            endpoint=FEES_ENDPOINT,
-            payload={**BASE_PAYLOAD, 'a': currency, 'c': 'USD'}
+            endpoint=FEES_ENDPOINT, payload={**BASE_PAYLOAD, 'a': currency, 'c': 'USD'}
         )
         return round(float(self._get_last_value(response)), 2)
 

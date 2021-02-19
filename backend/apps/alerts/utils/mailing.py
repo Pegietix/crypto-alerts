@@ -7,7 +7,6 @@ from backend.apps.alerts.constants import MAILGUN_ENDPOINT
 
 
 class EmailSender:
-
     def __init__(self, recipients: tuple):
         self.recipients = recipients
 
@@ -20,9 +19,9 @@ class EmailSender:
             'from': EMAIL_FROM,
             'to': [addressee],
             'subject': subject,
-            'html': self._render_email_template(template, **data)
+            'html': self._render_email_template(template, **data),
         }
-        requests.post(MAILGUN_ENDPOINT,  auth=('api', MAILGUN_API_KEY), data=context)
+        requests.post(MAILGUN_ENDPOINT, auth=('api', MAILGUN_API_KEY), data=context)
 
     @staticmethod
     def _render_email_template(template, **kwargs):

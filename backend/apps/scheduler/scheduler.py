@@ -18,8 +18,18 @@ class Scheduler:
     _alert_dispatcher = AlertDispatcher()
 
     def __init__(self):
-        self._scheduler.add_job(self._alert_dispatcher.dispatch_fee_alerts, 'interval', seconds=GLASSNODE_ALERTS_INTERVAL, id='fee_alerts')
-        self._scheduler.add_job(self._alert_dispatcher.dispatch_price_alerts, 'interval', seconds=REALTIME_ALERTS_INTERVAL, id='price_alerts')
+        self._scheduler.add_job(
+            self._alert_dispatcher.dispatch_fee_alerts,
+            'interval',
+            seconds=GLASSNODE_ALERTS_INTERVAL,
+            id='fee_alerts',
+        )
+        self._scheduler.add_job(
+            self._alert_dispatcher.dispatch_price_alerts,
+            'interval',
+            seconds=REALTIME_ALERTS_INTERVAL,
+            id='price_alerts',
+        )
         self._scheduler.add_job(ping_project, 'interval', seconds=PINGER_INTERVAL, id='pinger')
 
     def start_background_jobs(self) -> None:

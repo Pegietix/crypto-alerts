@@ -12,7 +12,6 @@ from backend.apps.alerts.utils.fetchers import GlassnodeDataFetcher
 
 
 class TestFetcher:
-
     @fixture()
     def fetcher(self):
         """Init new fetcher before each test."""
@@ -22,16 +21,11 @@ class TestFetcher:
         'currency, response_content_filename, expected_return',
         [
             ('BTC', 'glassnode_btc_fees_response.json', 17.0),
-            ('ETH', 'glassnode_eth_fees_response.json', 8.43)
-        ]
+            ('ETH', 'glassnode_eth_fees_response.json', 8.43),
+        ],
     )
     def test_get_today_fees(
-        self,
-        mocker,
-        fetcher,
-        currency: str,
-        response_content_filename: str,
-        expected_return: float
+        self, mocker, fetcher, currency: str, response_content_filename: str, expected_return: float
     ):
         print('iiiii', os.getcwd())
         api_response_mock = self._mock_response(response_content_filename)
@@ -45,23 +39,18 @@ class TestFetcher:
                 'i': '24h',
                 'a': currency,
                 'c': 'USD',
-            }
+            },
         )
 
     @mark.parametrize(
         'currency, response_content_filename, expected_return',
         [
             ('BTC', 'glassnode_btc_prices_response.json', 39784),
-            ('ETH', 'glassnode_eth_prices_response.json', 1676)
-        ]
+            ('ETH', 'glassnode_eth_prices_response.json', 1676),
+        ],
     )
     def test_get_today_price(
-        self,
-        mocker,
-        fetcher,
-        currency: str,
-        response_content_filename: str,
-        expected_return: int
+        self, mocker, fetcher, currency: str, response_content_filename: str, expected_return: int
     ):
         api_response_mock = self._mock_response(response_content_filename)
         query_glassnode = self._mock_query(mocker, api_response_mock)
@@ -73,20 +62,14 @@ class TestFetcher:
                 'api_key': GLASSNODE_API_KEY,
                 'i': '24h',
                 'a': currency,
-            }
+            },
         )
 
     @staticmethod
     def _mock_response(response_content_filename: str) -> Response:
         api_response_mock = Response()
         api_response_mock._content = open(
-            os.path.join(
-                'tests',
-                'alerts',
-                'miscellaneous',
-                response_content_filename
-            ),
-            'rb'
+            os.path.join('tests', 'alerts', 'miscellaneous', response_content_filename), 'rb'
         ).read()
         return api_response_mock
 
@@ -94,5 +77,5 @@ class TestFetcher:
     def _mock_query(mocker, api_response_mock: Response) -> MagicMock:
         return mocker.patch(
             'backend.apps.alerts.utils.fetchers.GlassnodeDataFetcher._query_glassnode',
-            return_value=api_response_mock
+            return_value=api_response_mock,
         )

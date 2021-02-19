@@ -1,1 +1,1 @@
-PINGER_INTERVAL = 60    # In seconds.
+PINGER_INTERVAL = 60  # In seconds.
