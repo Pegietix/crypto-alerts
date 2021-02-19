@@ -1,0 +1,58 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+exclude: '^migrations/'
+repos:
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.770
+    hooks:
+      - id: mypy   # Check typing correctness
+        args: [--python-version=3.8, --no-warn-no-return]
+
+  - repo: https://github.com/asottile/reorder_python_imports
+    rev: v2.3.0
+    hooks:
+      - id: reorder-python-imports
+        language_version: python3.8
+
+  - repo: https://github.com/ambv/black
+    rev: stable
+    hooks:
+      - id: black   # Reformat code
+        language_version: python3.8
+        # Migrations need to be excluded also here for CI, not only in `pyproject.toml`.
+        exclude: migrations
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: double-quote-string-fixer   # Enforce single quotes
+        types: [python]
+      - id: trailing-whitespace   # Remove trailing whitespaces
+        types: [python]
+      - id: end-of-file-fixer   # Ensure newline at end of files
+      - id: check-xml   # Check XML syntax
+      - id: check-yaml   # Check YML syntax
+      - id: detect-private-key   # Prevent committing private keys
+
+  - repo: https://github.com/prettier/prettier
+    rev: master
+    hooks:
+      - id: prettier
+        name: prettier-js
+        types: [javascript]
+        args: [--config, .prettier-configs/prettier-config-js.json]
+      - id: prettier
+        name: prettier-css
+        types: [css]
+        args: [--config, .prettier-configs/prettier-config-css.json]
+      - id: prettier
+        name: prettier-json
+        types: [json]
+        args: [--config, .prettier-configs/prettier-config-json.json]
+
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: '3.7.9'
+    hooks:
+    - id: flake8   # Ensure flake8 consistency
+      types: [python]
