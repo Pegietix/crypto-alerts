@@ -20,7 +20,7 @@ def main():
 
     # Run unit tests before launch.
     if 'runserver' in sys.argv:
-        os.system('pytest -v')
+        os.system('pytest -v backend/')
 
     execute_from_command_line(sys.argv)
 
