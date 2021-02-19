@@ -1,7 +1,15 @@
+import os
+
 import pytest
 import requests
 
 from backend.tests.constants import HTTP_REQUEST_METHODS
+
+
+@pytest.fixture(autouse=True)
+def set_working_dir():
+    """Make sure tests are run in correct working dir."""
+    os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 @pytest.fixture(autouse=True)
