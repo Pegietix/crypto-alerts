@@ -16,7 +16,7 @@ repos:
         language_version: python3.8
 
   - repo: https://github.com/ambv/black
-    rev: stable
+    rev: '20.8b1'
     hooks:
       - id: black   # Reformat code
         language_version: python3.8
@@ -34,22 +34,6 @@ repos:
       - id: check-xml   # Check XML syntax
       - id: check-yaml   # Check YML syntax
       - id: detect-private-key   # Prevent committing private keys
-
-  - repo: https://github.com/prettier/prettier
-    rev: master
-    hooks:
-      - id: prettier
-        name: prettier-js
-        types: [javascript]
-        args: [--config, .prettier-configs/prettier-config-js.json]
-      - id: prettier
-        name: prettier-css
-        types: [css]
-        args: [--config, .prettier-configs/prettier-config-css.json]
-      - id: prettier
-        name: prettier-json
-        types: [json]
-        args: [--config, .prettier-configs/prettier-config-json.json]
 
   - repo: https://gitlab.com/pycqa/flake8
     rev: '3.7.9'
